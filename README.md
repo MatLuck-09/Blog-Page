@@ -15,7 +15,7 @@ Para poder correr este proyecto y podes ver su contenido dejo redactado los paso
 1-Abrir el proyecto desde un interprete de python.
 2-Acceder desde la terminar a la carpetta HistoryBattles mediante el comando cd.
 3-Una vez dentro hacemos uso del comando python manage.py runserver.
-4-Desde el navegador nos dirigimos a nuestro localhost y ya deberiasmos poder visualizarlo.
+4-Desde el navegador nos dirigimos a nuestro localhost y ya deberiamos poder visualizarlo.
 
 
 ## Créditos
