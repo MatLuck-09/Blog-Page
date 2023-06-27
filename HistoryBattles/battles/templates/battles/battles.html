@@ -1,0 +1,114 @@
+{% extends "HistoryBattlesApp/base.html" %}
+
+{% load static %}
+
+{% block spaceContent %}
+
+    {% for batalla in batallas %}
+
+        <!-- Projects-->
+        <section bg-light" id="projects">
+            <div class="container px-4 px-lg-5">
+                <!-- Featured Project Row-->
+                <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+                    <div class="col-xl-8 col-lg-7">
+                    <img class="img-fluid mb-3 mb-lg-0" src="{{batalla.imagen.url}}" alt="..." /></div>
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="featured-text text-center text-lg-left">
+                            <h2>{{batalla.nombre}}</h2>
+                            <p class="text-black-50 mb-0">Fecha:{{batalla.fecha}}</p>
+                            <p class="text-black-50 mb-0">Lugar:{{batalla.lugar}}</p>
+                            <p class="text-black-50 mb-0">Beligerantes:{{batalla.beligerantes}}</p>
+                            <p class="text-black-50 mb-0">Resultado:{{batalla.resultado}}</p>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+
+                {% for ejercito in ejercito1 %}
+                    {% if ejercito.batalla == batalla %}
+
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <h3>{{ejercito.titulo}}</h3>
+                                    <tr>
+                                        <th>Comandantes</th>
+                                        <th>Fuerzas de combate</th>
+                                        <th>Infanteria</th>
+                                        <th>Caballeria</th>
+                                        <th>Proyectiles</th>
+                                        <th>Tropas de Elite</th>
+                                        <th>Mercenarios</th>
+                                        <th>Asedio</th>
+                                        <th>Criaturas</th>
+                                        <th>Bajas</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{ejercito.comandantes}}</td>
+                                        <td>{{ejercito.fuerzas_combate}}</td>
+                                        <td>{{ejercito.infanteria}}</td>
+                                        <td>{{ejercito.caballeria}}</td>
+                                        <td>{{ejercito.proyectiles}}</td>
+                                        <td>{{ejercito.tropas_elite}}</td>
+                                        <td>{{ejercito.mercenarios}}</td>
+                                        <td>{{ejercito.asedio}}</td>
+                                        <td>{{ejercito.criaturas}}</td>
+                                        <td>{{ejercito.bajas}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+                {% for ejercito in ejercito2 %}
+                    {% if ejercito.batalla == batalla %}
+
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <h3>{{ejercito.titulo}}</h3>
+                                    <tr>
+                                        <th>Comandantes</th>
+                                        <th>Fuerzas de combate</th>
+                                        <th>Infanteria</th>
+                                        <th>Caballeria</th>
+                                        <th>Proyectiles</th>
+                                        <th>Tropas de Elite</th>
+                                        <th>Mercenarios</th>
+                                        <th>Asedio</th>
+                                        <th>Criaturas</th>
+                                        <th>Bajas</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{ejercito.comandantes}}</td>
+                                        <td>{{ejercito.fuerzas_combate}}</td>
+                                        <td>{{ejercito.infanteria}}</td>
+                                        <td>{{ejercito.caballeria}}</td>
+                                        <td>{{ejercito.proyectiles}}</td>
+                                        <td>{{ejercito.tropas_elite}}</td>
+                                        <td>{{ejercito.mercenarios}}</td>
+                                        <td>{{ejercito.asedio}}</td>
+                                        <td>{{ejercito.criaturas}}</td>
+                                        <td>{{ejercito.bajas}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+                </div>
+        </section>
+
+
+    {% endfor %}
+
+{% endblock %}
+

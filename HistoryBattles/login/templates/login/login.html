@@ -1,0 +1,24 @@
+<div>
+
+    {% extends "HistoryBattlesApp/base.html" %}
+
+    {% load static %}
+
+    {% block spaceContent %}
+
+        <p>No olvides registrarte.</p>
+
+        <form action="/login/" method="POST"> {% csrf_token %}
+
+            <table>
+
+                {{ form.as_table }}
+
+            </table>
+
+            <input type = "submit" value="Enviar">
+        </form>
+
+    {% endblock %}
+
+</div>
