@@ -2,9 +2,10 @@ from django.shortcuts import render, redirect
 from .forms import RequestForms
 from battles.models import Batalla
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-
+@login_required
 def blog(request):
     if request.method == 'POST':
         form = RequestForms(request.POST)

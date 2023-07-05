@@ -1,17 +1,27 @@
 from django.shortcuts import render
 from .models import Usuarios
 from .forms import CreateUser
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import login, logout, authenticate
 
-# Create your views here.
-def login(request):
-    if request.method == 'POST':
-        forms = CreateUser(request.POST)
-        if forms.is_valid():
-            data = forms.cleaned_data
-            user = Usuarios(nombre=data["nombre"],apellido=data["apellido"], email=data["email"])
-            user.save()
-        return render(request, "HistoryBattlesApp/home.html")
+def loginUsers(request):
+    if request.method == "POST":
+        user = authenticate(username = request.POST['user'], password = request.POST['password'])
+        if user is not None:
+            login(request, user)
+            return render(request, "HistoryBattlesApp/home.html")
+        else:
+            return render(request, "login/login.html", {'error':'Usuario o contraseña incorrectos'})
     else:
-        form = CreateUser()
+        return render(request, "login/login.html")
 
-    return render(request, "login/login.html", {'form': form})
+
+def register(request):
+    if request.method == "POST":
+        userCreate = UserCreationForm(request.POST)
+        if userCreate is not None:
+            userCreate.save()
+            return render(request, "login/login.html")
+    else:
+        return render(request, "register/register.html")
+

@@ -7,3 +7,63 @@
     margin-top: 10px !important;
     padding: 5px;
 }
+
+.parrafoStyle{
+    color: white !important;
+
+}
+
+.tittleLogin {
+    color: white !important;
+    font-weight: bold !important;
+    margin-bottom: 30px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.bodyColor {
+    margin: 0;
+    padding: 0;
+    background-color: #222; /* Cambia el color a tu tono oscuro deseado */
+}
+
+.containerLogin {
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-right: 20px;
+    border: 1px solid black;
+    padding: 10px;
+    background-image: url("../assets/img/FondoLogin.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.formLogin{
+    font-weight: bold;
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 100%);
+    padding: 40px 20px 20px 20px;
+    border-radius: 5px;
+    width: 350px;
+    height: 400px;
+}
+
+.formLogin div{
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputLogin{
+    border-radius: 5px;
+    border: 1px solid rebeccapurple;
+    width: 90%;
+}

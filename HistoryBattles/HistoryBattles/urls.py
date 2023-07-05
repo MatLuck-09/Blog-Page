@@ -21,9 +21,9 @@ urlpatterns = [
 
     path('', include('HistoryBattlesApp.urls')),
 
-    path('battles/', include('battles.urls')),
-
     path('login/', include('login.urls')),
+
+    path('battles/', include('battles.urls')),
 
     path('blog/', include('blog.urls')),
 

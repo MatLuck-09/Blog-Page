@@ -12,21 +12,21 @@
     <div class="containerLogin">
         <form action="" method="POST" class="formLogin"> {% csrf_token %}
 
-            <h3 class="tittleLogin">History Battles Login</h3>
+            <h3 class="tittleLogin">History Battles Register</h3>
 
             <div>
-                <input name="user" type="text" placeholder="User" class="inputLogin">
+                <input name="username" type="text" placeholder="User" class="inputLogin">
             </div>
             <div>
-                <input name="password" type="password" placeholder="Password" class="inputLogin">
+                <input name="password1" type="password" placeholder="Password" class="inputLogin">
             </div>
             <div>
-                <button class="btn btn-primary" type="submit">Login</button>
+                <input name="password2" type="password" placeholder="Password Confirmation" class="inputLogin">
             </div>
-            {% if error %}
-                <p style="color: brown;">{{error}}</p>
-            {% endif %}
-            <p class="parrafoStyle">Aun no tienes una cuenta? <a href="{% url 'Register' %}">Registrate</a></p>
+            <div>
+                <button class="btn btn-primary" type="submit">Register</button>
+            </div>
+            <p class="parrafoStyle">Ya tienes una cuenta? <a href="{% url 'Login' %}">Iniciar Sesion</a></p>
 
         </form>
     </div>
