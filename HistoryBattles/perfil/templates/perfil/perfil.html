@@ -1,0 +1,19 @@
+{% extends "HistoryBattlesApp/base.html" %}
+
+{% load static %}
+
+{% block changesContent %}
+
+    <div>
+        <ul>
+            <li>{{user.username}}</li>
+            <li>{{user.email}}</li>
+            <li>{{user.first_name}}</li>
+            <li>{{user.last_name}}</li>
+        </ul>
+        <a href="/perfil/editar" class="btn btn-success" style="text-decoration: none; color: white;">Editar Perfil</a>
+        <a href="/perfil/avatar" class="btn btn-success" style="text-decoration: none; color: white;">Avatar</a>
+    </div>
+
+{% endblock %}
+

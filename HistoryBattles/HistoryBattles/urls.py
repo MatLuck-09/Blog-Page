@@ -27,4 +27,6 @@ urlpatterns = [
 
     path('blog/', include('blog.urls')),
 
+    path('perfil/', include('perfil.urls')),
+
 ]

@@ -1,8 +1,7 @@
-from django.shortcuts import render
-from .models import Usuarios
-from .forms import CreateUser
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, logout, authenticate
+from django.contrib import messages
 
 def loginUsers(request):
     if request.method == "POST":
@@ -17,11 +16,15 @@ def loginUsers(request):
 
 
 def register(request):
-    if request.method == "POST":
-        userCreate = UserCreationForm(request.POST)
-        if userCreate is not None:
-            userCreate.save()
-            return render(request, "login/login.html")
-    else:
-        return render(request, "register/register.html")
+    try:
+        if request.method == "POST":
+            userCreate = UserCreationForm(request.POST)
+            if userCreate is not None:
+                userCreate.save()
+                return redirect("../")
+        else:
+            return render(request, "register/register.html")
+    except:
+        messages.error(request, "Ocurrió un error durante el registro. Por favor, inténtalo nuevamente.")
 
+    return redirect("register:register")
