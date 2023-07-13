@@ -1,3 +1,14 @@
+.containerHome {
+    background-image: url("../assets/img/Imagen1.jpg");
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    height: 60vh !important;
+    display: flex !important;
+    align-items : center !important;
+    justify-content: center !important;
+}
+
 .contenido{
     margin-top: 100px !important;
     padding: 10px;
@@ -67,3 +78,39 @@
     border: 1px solid rebeccapurple;
     width: 90%;
 }
+
+.formPerfil {
+    display: flex!important;
+    flex-direction: column!important;
+    align-items: center!important;
+    text-align: center!important;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.blog-entry {
+    margin-bottom: 20px;  
+    padding: 10px;  
+    border: 1px solid #ccc;  
+    border-radius: 5px;  
+    background-color: #f9f9f9;  
+}
+
+.blog-grid {
+    display: flex;  
+    flex-wrap: wrap;  
+}
+
+.blog-entry {
+    flex: 0 0 calc(33.33% - 20px);  
+    margin: 10px;  
+    background-color: #f9f9f9;  
+    padding: 10px;  
+    border: 1px solid #ccc;  
+    border-radius: 5px;  
+}
+

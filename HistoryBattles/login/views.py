@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login, logout, authenticate
-from django.contrib import messages
+from django.contrib.auth import login, authenticate 
+from django.http import HttpResponseServerError
 
 def loginUsers(request):
     if request.method == "POST":
@@ -10,7 +10,7 @@ def loginUsers(request):
             login(request, user)
             return render(request, "HistoryBattlesApp/home.html")
         else:
-            return render(request, "login/login.html", {'error':'Usuario o contraseña incorrectos'})
+            return render(request, "login/login.html", {'error1':'Usuario o contraseña incorrectos'})
     else:
         return render(request, "login/login.html")
 
@@ -19,12 +19,12 @@ def register(request):
     try:
         if request.method == "POST":
             userCreate = UserCreationForm(request.POST)
-            if userCreate is not None:
+            if userCreate.is_valid():
                 userCreate.save()
                 return redirect("../")
         else:
             return render(request, "register/register.html")
     except:
-        messages.error(request, "Ocurrió un error durante el registro. Por favor, inténtalo nuevamente.")
+        return HttpResponseServerError('Contraseña demasiado corta (mayor a 8 caracteres), recuerda que tambien puedes utilizar numeros y letras.')
 
     return redirect("register:register")

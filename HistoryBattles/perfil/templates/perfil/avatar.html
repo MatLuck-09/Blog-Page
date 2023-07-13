@@ -1,9 +1,19 @@
-<h3>Avatar</h3>
-<h5>{{user.usuario}}</h5>
+{% extends "HistoryBattlesApp/base.html" %}
+{% load static %}
 
-<form method="POST" enctype="multipart/form-data"> {% csrf_token %}
-    <table>
-        {{form.as_p}}
-    </table>
-    <input type="submit" value="Aceptar">
-</form>
+{% block changesContent %}
+
+    <h3>Avatar</h3>
+    <h5>{{user.username}}</h5>
+
+    <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
+        <table>
+            {{ form.as_p }}
+        </table>
+        <div class="button-container">
+            <input class="btn btn-success" style="text-decoration: none; color: white;" type="submit" value="Aceptar">
+            <a href="/perfil/editar" class="btn btn-success" style="text-decoration: none; color: white;" >Volver a mi perfil</a>
+        </div>
+    </form>
+
+{% endblock %}

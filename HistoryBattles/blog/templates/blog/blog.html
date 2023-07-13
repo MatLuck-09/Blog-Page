@@ -1,33 +1,22 @@
 <div>
 
     {% extends "HistoryBattlesApp/base.html" %}
-
     {% load static %}
 
     {% block spaceContent %}
 
-        <p>Consulta nuestra base de datos para ver las batallas registradas.</p>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Publicar</button>
+    </form>
 
-        <div>
-            <h1>Consulta de batalla</h1>
-
-            {% if error_msg %}
-            <p>{{ error_msg }}</p>
-            {% endif %}
-        
-            {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-        
-            <form method="post">{% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="Consultar">
-            </form>
-        </div>
+    {% for recomendacion in recomendaciones %}
+    <div class="blog-entry">
+        <h2>{{ recomendacion.usuario }}</h2>
+        <p>{{ recomendacion.contenido }}</p>
+    </div>
+    {% endfor %}
 
     {% endblock %}
 

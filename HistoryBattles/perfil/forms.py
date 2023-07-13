@@ -10,10 +10,9 @@ class CreateUser(forms.Form):
 
 class UserEditForm(UserChangeForm):
     username = forms.CharField(widget= forms.TextInput(attrs={"placeholder":"Username"}))
-    email = forms.CharField(widget= forms.TextInput(attrs={"placeholder":"Email"}))
+    email = forms.EmailField(widget= forms.TextInput(attrs={"placeholder":"Email"}))
     first_name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "First Name"}))
     last_name = forms.CharField(widget= forms.TextInput(attrs={"placeholder":"Last Name"}))
-    #password = forms.CharField(widget= forms.PasswordInput(attrs={"placeholder":"Password"}))
 
     class Meta:
         model = User
@@ -32,4 +31,4 @@ class ChangePasswordForm(PasswordChangeForm):
         help_texts = {k: "" for k in fields}
 
 class AvatarForm(forms.Form):
-    avatar = forms.ImageField
+    avatar = forms.ImageField()

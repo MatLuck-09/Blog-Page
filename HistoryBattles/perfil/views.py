@@ -1,9 +1,10 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .forms import UserEditForm, ChangePasswordForm, AvatarForm
 from django.contrib.auth import update_session_auth_hash
 from .models import Avatar
+from django.contrib import messages
 
 # Create your views here.
 @login_required
@@ -31,16 +32,23 @@ def editarPerfil(request):
 def changePassword(request):
     usuario = request.user
     if request.method == "POST":
-        form = ChangePasswordForm(data = request.POST, user = usuario)
+        form = ChangePasswordForm(data=request.POST, user=usuario)
         if form.is_valid():
-            if request.POST['new_password1'] == request.POST['new_password2']:
+            new_password1 = form.cleaned_data['new_password1']
+            new_password2 = form.cleaned_data['new_password2']
+            if new_password1 == new_password2:
                 user = form.save()
                 update_session_auth_hash(request, user)
-            return HttpResponse("Las constraseñas no coinciden")
-        return render(request, "HistoryBattlesApp/home.html")
+                return redirect('Home')
+            else:
+                messages.error(request, 'Las contraseñas no coinciden.')
+        else:
+            messages.error(request, 'Ha ocurrido un error al cambiar la contraseña. Por favor, revisa los datos ingresados.')
+
     else:
-        form = ChangePasswordForm(user = usuario)
-        return render(request, "perfil/changePassword.html", {"form":form})
+        form = ChangePasswordForm(user=usuario)
+
+    return render(request, "perfil/changePassword.html", {"form": form})
     
 @login_required
 def editAvatar(request):
@@ -60,11 +68,11 @@ def editAvatar(request):
             return render(request, 'HistoryBattlesApp/home.html',{'avatar':avatar})
     else:
         try:
-            avatar = Avatar.objets.filter(user = request.user.id)
+            avatar = Avatar.objects.filter(user = request.user.id)
             form = AvatarForm()
         except:
             form = AvatarForm()
-    return render(request, 'perfil/avatar.html')
+    return render(request, 'perfil/avatar.html', {'form': form})
 
 def getAvatar(request):
     avatar = Avatar.objects.filter(user = request.user.id)

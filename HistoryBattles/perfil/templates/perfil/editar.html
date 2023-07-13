@@ -1,11 +1,17 @@
-<h3>Editar Perfil</h3>
-<h6>{{user.username}}</h6>
+{% extends "HistoryBattlesApp/base.html" %}
+{% load static %}
 
-<form method="POST"> {% csrf_token %}
-    <table>
-        {{form.as_table}}
-    </table>
-    <input type="submit" value="Editar Perfil">
-</form>
-<a href="/perfil/changePassword">Cambiar contraseña</a>
+{% block changesContent %}
+    <h3>Editar Perfil</h3>
+    <h6>{{ user.username }}</h6>
 
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Guardar cambios">
+    </form>
+    
+    <a href="/perfil/changePassword" class="btn btn-success" style="text-decoration: none; color: white; margin-top: 10px;">Cambiar contraseña</a>
+{% endblock %}
