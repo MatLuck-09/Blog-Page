@@ -16,6 +16,7 @@ def loginUsers(request):
         return render(request, "login/login.html")
 
 
+<<<<<<< HEAD
 def register(request):
     if request.method == 'POST':
         form2 = UserCreationForm(request.POST)
@@ -23,6 +24,22 @@ def register(request):
             form2.save()
             messages.success(request, '¡Registro exitoso! Ahora puedes iniciar sesión.')
             return redirect('../')
+=======
+from django.shortcuts import render, redirect
+from .forms import CustomUserCreationForm
+
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .forms import CustomUserCreationForm
+
+def register(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, '¡Registro exitoso! Ahora puedes iniciar sesión.')
+            return redirect('/')
+>>>>>>> c2415f5749d574ffd48becf5b61d1308080324ba
         else:
             for field, errors in form.errors.items():
                 for error in errors:
@@ -30,4 +47,11 @@ def register(request):
     else:
         form2 = UserCreationForm()
     
+<<<<<<< HEAD
     return render(request, 'register/register.html', {'form': form2})
+=======
+    return render(request, 'register/register.html', {'form': form})
+
+
+
+>>>>>>> c2415f5749d574ffd48becf5b61d1308080324ba
