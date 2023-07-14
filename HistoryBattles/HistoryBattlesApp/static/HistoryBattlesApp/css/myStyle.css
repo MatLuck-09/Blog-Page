@@ -37,7 +37,7 @@
 .bodyColor {
     margin: 0;
     padding: 0;
-    background-color: #222; /* Cambia el color a tu tono oscuro deseado */
+    background-color: #222;
 }
 
 .containerLogin {
@@ -55,7 +55,7 @@
     background-image: url("../assets/img/FondoLogin.jpg");
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center center;
 }
 
 .formLogin{

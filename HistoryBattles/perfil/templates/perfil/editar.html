@@ -6,10 +6,19 @@
     <h6>{{ user.username }}</h6>
 
     <form method="POST">
+        <div>
         {% csrf_token %}
-        <table>
-            {{ form.as_table }}
-        </table>
+            <table>
+                {{ form.as_table }}
+                {{ info_personal_form.as_p }}
+            </table>
+        </div>
+        <div>
+        {% if info_personal %}
+            <li>Descripción: {{ info_personal.descripcion }}</li>
+            <li>Enlace: <a href="{{ info_personal.enlace }}">{{ info_personal.enlace }}</a></li>
+        {% endif %}
+        </div>
         <input type="submit" value="Guardar cambios">
     </form>
     

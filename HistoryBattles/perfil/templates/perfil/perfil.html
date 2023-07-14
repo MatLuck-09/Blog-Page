@@ -10,6 +10,11 @@
         <li>Email: {{ user.email }}</li>
         <li>Primer nombre: {{ user.first_name }}</li>
         <li>Segundo nombre: {{ user.last_name }}</li>
+        {% if info_personal %}
+        <li>Descripción: {{ info_personal.descripcion }}</li>
+        <li>Enlace: <a href="{{ info_personal.enlace }}">{{ info_personal.enlace }}</a></li>
+        {% endif %}
+
         </ul>
         <a href="/perfil/editar" class="btn btn-success" style="text-decoration: none; color: black;">Editar Perfil</a>
         <a href="/perfil/avatar" class="btn btn-success" style="text-decoration: none; color: black;">Avatar</a>
