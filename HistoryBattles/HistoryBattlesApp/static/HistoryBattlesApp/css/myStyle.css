@@ -7,6 +7,7 @@
     display: flex !important;
     align-items : center !important;
     justify-content: center !important;
+    border: 2px solid #0d6efd;
 }
 
 .contenido{
@@ -92,25 +93,21 @@
     margin-top: 10px;
 }
 
-.blog-entry {
-    margin-bottom: 20px;  
-    padding: 10px;  
-    border: 1px solid #ccc;  
-    border-radius: 5px;  
-    background-color: #f9f9f9;  
+.blog-container {
+    background-color: #0d6efd;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px black ;
+    display: inline-block;
+    margin: 1rem;
+    padding: 1rem;
+    width: 30%;
 }
 
-.blog-grid {
-    display: flex;  
-    flex-wrap: wrap;  
+.custom-textfield {
+    font-size: 14px;
+    color: #333;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
 }
-
-.blog-entry {
-    flex: 0 0 calc(33.33% - 20px);  
-    margin: 10px;  
-    background-color: #f9f9f9;  
-    padding: 10px;  
-    border: 1px solid #ccc;  
-    border-radius: 5px;  
-}
-

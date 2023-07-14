@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate 
 from django.http import HttpResponseServerError
+from .forms import CustomUserCreationForm
+from django.contrib import messages
+from django.contrib.auth.models import User
 
 def loginUsers(request):
     if request.method == "POST":
@@ -15,16 +18,29 @@ def loginUsers(request):
         return render(request, "login/login.html")
 
 
-def register(request):
-    try:
-        if request.method == "POST":
-            userCreate = UserCreationForm(request.POST)
-            if userCreate.is_valid():
-                userCreate.save()
-                return redirect("../")
-        else:
-            return render(request, "register/register.html")
-    except:
-        return HttpResponseServerError('Contraseña demasiado corta (mayor a 8 caracteres), recuerda que tambien puedes utilizar numeros y letras.')
+from django.shortcuts import render, redirect
+from .forms import CustomUserCreationForm
 
-    return redirect("register:register")
+def register(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            if User.objects.filter(email=email).exists():
+                form.add_error('email', 'El email ya está registrado.')
+            else:
+                form.save()
+                messages.success(request, '¡Registro exitoso! Ahora puedes iniciar sesión.')
+                return redirect('../')
+        else:
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f'Error en el campo "{field}": {error}')
+    else:
+        form = CustomUserCreationForm()
+    
+    return render(request, 'register/register.html', {'form': form})
+
+
+
+

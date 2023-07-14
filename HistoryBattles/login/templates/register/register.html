@@ -10,24 +10,13 @@
 </head>
 <body class="bodyColor">
     <div class="containerLogin">
-        <form action="" method="POST" class="formLogin"> {% csrf_token %}
+        
+        <form action="{% url 'Register' %}" method="POST" class="formLogin"> {% csrf_token %}
+            
+            {{form.as_p}}
 
-            <h3 class="tittleLogin">History Battles Register</h3>
-
             <div>
-                <input minlength="4" maxlength="20" name="username" type="text" placeholder="User" class="inputLogin">
-            </div>
-            <div>
-                <input name="email" type="text" placeholder="Email" class="inputLogin">
-            </div>
-            <div>
-                <input name="password1" type="password" placeholder="Password" class="inputLogin">
-            </div>
-            <div>
-                <input name="password2" type="password" placeholder="Password Confirmation" class="inputLogin">
-            </div>
-            <div>
-                <button class="btn btn-primary" type="submit">Register</button>
+            <button class="btn btn-primary" type="submit">Registrar></button>
             </div>
             <p class="parrafoStyle">Ya tienes una cuenta? <a href="{% url 'Login' %}">Iniciar Sesion</a></p>
 
@@ -35,3 +24,5 @@
     </div>
 </body>
 </html>
+
+<h3 class="tittleLogin">History Battles Register</h3>

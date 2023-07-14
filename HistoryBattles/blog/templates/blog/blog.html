@@ -5,16 +5,18 @@
 
     {% block spaceContent %}
 
-    <form method="post" enctype="multipart/form-data">
+    <p style="text-align: center;">No olvides dejarnos tu sugerencia, proximamente ampliaremos nuestro contenido.</p>
+
+    <form method="post" enctype="multipart/form-data" style="text-align: center;">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Publicar</button>
+        <button type="submit" class="btn btn-success" style="text-decoration: none; color: black; margin-top: 10px;">Publicar</button>
     </form>
 
     {% for recomendacion in recomendaciones %}
-    <div class="blog-entry">
+    <div class="blog-container">
         <h2>{{ recomendacion.usuario }}</h2>
-        <p>{{ recomendacion.contenido }}</p>
+        <p >{{ recomendacion.contenido }}</p>
     </div>
     {% endfor %}
 
