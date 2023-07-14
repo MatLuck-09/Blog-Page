@@ -21,17 +21,17 @@ def loginUsers(request):
 from django.shortcuts import render, redirect
 from .forms import CustomUserCreationForm
 
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .forms import CustomUserCreationForm
+
 def register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            email = form.cleaned_data['email']
-            if User.objects.filter(email=email).exists():
-                form.add_error('email', 'El email ya está registrado.')
-            else:
-                form.save()
-                messages.success(request, '¡Registro exitoso! Ahora puedes iniciar sesión.')
-                return redirect('../')
+            form.save()
+            messages.success(request, '¡Registro exitoso! Ahora puedes iniciar sesión.')
+            return redirect('/')
         else:
             for field, errors in form.errors.items():
                 for error in errors:
@@ -40,7 +40,6 @@ def register(request):
         form = CustomUserCreationForm()
     
     return render(request, 'register/register.html', {'form': form})
-
 
 
 
