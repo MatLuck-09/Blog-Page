@@ -7,5 +7,5 @@ class RequestForms(forms.Form):
 class RecomendacionForm(forms.ModelForm):
     class Meta:
         model = Recomendacion
-        exclude = ('id',)
+        fields = ['usuario', 'contenido']
             

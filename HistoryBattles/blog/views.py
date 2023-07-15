@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from .forms import RequestForms
 from battles.models import Batalla
 from django.contrib import messages
@@ -38,14 +38,20 @@ def blog(request):
 
 @login_required
 def editar(request, recomendacion_id):
-    recomendacion = Recomendacion.objects.filter(id = recomendacion_id).first()
+    recomendacion = Recomendacion.objects.get(id = recomendacion_id)
     form = RecomendacionForm(instance= recomendacion)
     if request.method == "POST":
-        form = RecomendacionForm(request.POST or None, request.FILES or None, instance=recomendacion)
-        if form.is_valid() and request.method == "POST":
-            form.save()
+        form = RecomendacionForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            print(recomendacion.contenido)
+            recomendacion.usuario = data['usuario']
+            recomendacion.contenido = data['contenido']
+            recomendacion.save()
             messages.success(request, 'La recomendación se actualizó correctamente.')
             return redirect('Blog')
+
+
     return render(request, 'blog/editar.html', {'form': form, 'recomendacion': recomendacion})
 
 @login_required

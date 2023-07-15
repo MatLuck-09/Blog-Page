@@ -7,10 +7,14 @@
 
     <form method="POST">
         <div>
-        {% csrf_token %}
+            {% csrf_token %}
             <table>
                 {{ form.as_table }}
-                {{ info_personal_form.as_p }}
+                <tr>
+                    <td colspan="2">
+                        {{ info_personal_form.as_p }}
+                    </td>
+                </tr>
             </table>
         </div>
         <input type="submit" value="Guardar cambios">
