@@ -13,13 +13,31 @@
         <button type="submit" class="btn btn-success" style="text-decoration: none; color: black; margin-top: 10px;">Publicar</button>
     </form>
 
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
     {% for recomendacion in recomendaciones %}
     <div class="blog-container">
         <h2>{{ recomendacion.usuario }}</h2>
-        <p >{{ recomendacion.contenido }}</p>
-    </div>
-    {% endfor %}
+        <p>{{ recomendacion.contenido }}</p>
 
+        {% if recomendacion.usuario == request.user %}
+            <form method="post" action="{% url 'Blog' %}">
+                {% csrf_token %}
+                <input type="hidden" name="eliminar" value="{{ recomendacion.id }}">
+                <button type="submit" class="eliminar-btn">Eliminar</button>
+            </form>
+
+            <a href="{% url 'EditarRecomendacion' recomendacion.id %}" class="actualizar-btn">Editar</a>
+        {% endif %}
+    </div>
+{% endfor %}
+    
     {% endblock %}
 
 </div>

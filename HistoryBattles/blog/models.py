@@ -6,3 +6,6 @@ class Recomendacion(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     contenido = models.TextField()
     fecha = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str (self.usuario)

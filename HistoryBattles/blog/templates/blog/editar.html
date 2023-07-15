@@ -1,0 +1,16 @@
+{% extends "HistoryBattlesApp/base.html" %}
+{% load static %}
+
+{% block spaceContent %}
+
+<h2>Editar recomendación</h2>
+<form method="post" action="{% url 'Blog' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="hidden" name="id" value="{{ recomendacion.id }}">
+  <button type="submit" class="btn btn-success" style="text-decoration: none; color: black; margin-top: 10px;">Guardar</button>
+</form>
+
+
+
+{% endblock %}

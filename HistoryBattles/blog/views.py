@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import RequestForms
 from battles.models import Batalla
 from django.contrib import messages
@@ -13,18 +13,42 @@ from .forms import RecomendacionForm
 def blog(request):
     avatar = getAvatar(request)
     if request.method == 'POST':
-        form = RecomendacionForm(request.POST, request.FILES)
-        if form.is_valid():
-            recomendacion = form.save(commit=False)
-            recomendacion.usuario = request.user
-            recomendacion.save()
+        if 'eliminar' in request.POST:
+            recomendacion_id = request.POST.get('eliminar')
+            recomendacion = Recomendacion.objects.get(id=recomendacion_id)
+            if recomendacion.usuario == request.user:
+                recomendacion.delete()
+                messages.success(request, 'La recomendación se eliminó correctamente.')
+            else:
+                messages.error(request, 'No tienes permiso para eliminar esta recomendación.')
             return redirect('Blog')
+        else:
+            form = RecomendacionForm(request.POST, request.FILES)
+            if form.is_valid():
+                recomendacion = form.save(commit=False)
+                recomendacion.usuario = request.user
+                recomendacion.save()
+                messages.success(request, 'La recomendación se creó correctamente.')
+                return redirect('Blog')
     else:
         form = RecomendacionForm()
     recomendaciones = Recomendacion.objects.all()
-    return render(request, 'blog/blog.html', {'form': form, 'recomendaciones': recomendaciones, "avatar":avatar})
+    return render(request, 'blog/blog.html', {'form': form, 'recomendaciones': recomendaciones, 'avatar': avatar})
 
 
+@login_required
+def editar(request, recomendacion_id):
+    recomendacion = Recomendacion.objects.filter(id = recomendacion_id).first()
+    form = RecomendacionForm(instance= recomendacion)
+    if request.method == "POST":
+        form = RecomendacionForm(request.POST or None, request.FILES or None, instance=recomendacion)
+        if form.is_valid() and request.method == "POST":
+            form.save()
+            messages.success(request, 'La recomendación se actualizó correctamente.')
+            return redirect('Blog')
+    return render(request, 'blog/editar.html', {'form': form, 'recomendacion': recomendacion})
+
+@login_required
 def recomendacion_view(request):
     recomendaciones = Recomendacion.objects.all()
 
