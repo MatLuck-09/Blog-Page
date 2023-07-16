@@ -9,18 +9,20 @@
     <title>Document</title>
 </head>
 <body class="bodyColor">
-    <div class="containerLogin">
-        
-        <form action="{% url 'Register' %}" method="POST" class="formLogin"> {% csrf_token %}
+    <div class="containerRegister">
+
+        <form action="{% url 'Register' %}" method="POST" class="formGenerico"> {% csrf_token %}
             
             {{form.as_p}}
 
             <div>
-            <button class="btn btn-primary" type="submit">Registrar></button>
+                <button class="btn btn-primary" type="submit">Registrar</button>
             </div>
-            <p class="parrafoStyle">Ya tienes una cuenta? <a href="{% url 'Login' %}">Iniciar Sesion</a></p>
+            <p class="parrafoStyle">¿Ya tienes una cuenta? <a href="{% url 'Login' %}">Iniciar Sesión</a></p>
 
         </form>
+    </div>
+</body>
     </div>
 </body>
 </html>

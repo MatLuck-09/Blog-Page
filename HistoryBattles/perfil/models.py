@@ -7,7 +7,7 @@ class Avatar(models.Model):
     image = models.ImageField(upload_to='avatares', null=True, blank=True)
 
 class InfoPersonal(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     descripcion = models.TextField()
     enlace = models.URLField(max_length=200)
 

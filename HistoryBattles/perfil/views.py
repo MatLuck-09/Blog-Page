@@ -12,7 +12,8 @@ from .models import InfoPersonal
 @login_required
 def perfilview(request):
     usuario = request.user
-    informacion_personal = InfoPersonal.objects.filter(user=usuario)
+    informacion_personal = InfoPersonal.objects.filter(user=usuario).first()
+
     if request.method == 'POST':
         form = UserEditForm(request.POST, instance=request.user)
         if form.is_valid():
@@ -20,6 +21,7 @@ def perfilview(request):
             return redirect('perfil')
     else:
         form = UserEditForm(instance=request.user)
+
     return render(request, 'perfil/perfil.html', {'form': form, 'informacion_personal': informacion_personal})
 
 
@@ -28,33 +30,33 @@ def editarPerfil(request):
     usuario = request.user
     user_basic_info = User.objects.get(id=usuario.id)
 
+    try:
+        info_personal = InfoPersonal.objects.get(user=usuario)
+    except InfoPersonal.DoesNotExist:
+        info_personal = None
+
     if request.method == "POST":
         form = UserEditForm(request.POST, instance=usuario)
+        info_personal_form = InfoPersonalForm(request.POST, instance=info_personal)
 
-        if form.is_valid():
+        if form.is_valid() and info_personal_form.is_valid():
             user_basic_info.username = form.cleaned_data.get('username')
             user_basic_info.email = form.cleaned_data.get('email')
             user_basic_info.first_name = form.cleaned_data.get('first_name')
             user_basic_info.last_name = form.cleaned_data.get('last_name')
             user_basic_info.save()
 
-            return render(request, 'perfil/perfil.html')
-    else:
-        form = UserEditForm(initial={'username': usuario.username, 'email': usuario.email, 'first_name': usuario.first_name, 'last_name': usuario.last_name})
-
-    info_personal_form = InfoPersonalForm()
-
-    if request.method == 'POST':
-        info_personal_form = InfoPersonalForm(request.POST)
-
-        if info_personal_form.is_valid():
             info_personal = info_personal_form.save(commit=False)
             info_personal.user = usuario
             info_personal.save()
 
-            return render(request, 'perfil/perfil.html')
+            return redirect('/perfil')
+    else:
+        form = UserEditForm(initial={'username': usuario.username, 'email': usuario.email, 'first_name': usuario.first_name, 'last_name': usuario.last_name})
+        info_personal_form = InfoPersonalForm(instance=info_personal)
 
     return render(request, 'perfil/editar.html', {'form': form, 'info_personal_form': info_personal_form})
+
 
 
 @login_required

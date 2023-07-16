@@ -111,3 +111,44 @@
     border-radius: 4px;
     background-color: #f9f9f9;
 }
+
+.formGenerico {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    position: relative !important;
+    border: 1px solid black;
+    padding: 10px;
+    background-image: url("../assets/img/FondoLogin.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.formGenerico form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formGenerico label {
+    color: #000000; 
+}
+
+.formGenerico input[type="text"],
+.formGenerico input[type="password"] {
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.formGenerico button {
+    background-color: #000000; 
+    color: #ffffff; 
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.formGenerico button:hover {
+    background-color: #555555;
+}
