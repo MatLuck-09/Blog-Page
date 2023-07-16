@@ -58,6 +58,26 @@
     background-position: center center;
 }
 
+.containerRegister {
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-right: 20px;
+    border: 1px solid black;
+    padding: 10px;
+    background-image: url("../assets/img/FondoRegister2.jpeg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+
+
 .formLogin{
     font-weight: bold;
     background: linear-gradient(45deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 100%);
@@ -110,45 +130,4 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     background-color: #f9f9f9;
-}
-
-.formGenerico {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    position: relative !important;
-    border: 1px solid black;
-    padding: 10px;
-    background-image: url("../assets/img/FondoLogin.jpg");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-
-.formGenerico form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.formGenerico label {
-    color: #000000; 
-}
-
-.formGenerico input[type="text"],
-.formGenerico input[type="password"] {
-    margin-bottom: 10px;
-    padding: 5px;
-}
-
-.formGenerico button {
-    background-color: #000000; 
-    color: #ffffff; 
-    padding: 5px 10px;
-    border: none;
-    cursor: pointer;
-}
-
-.formGenerico button:hover {
-    background-color: #555555;
 }

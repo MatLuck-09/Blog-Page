@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="{% static 'HistoryBattlesApp/css/myStyle.css'%}">
     <title>Document</title>
 </head>
-<body class="bodyColor">
+<body class="">
     <div class="containerRegister">
 
-        <form action="{% url 'Register' %}" method="POST" class="formGenerico"> {% csrf_token %}
+        <form action="{% url 'Register' %}" method="POST" class=""> {% csrf_token %}
             
             {{form.as_p}}
 

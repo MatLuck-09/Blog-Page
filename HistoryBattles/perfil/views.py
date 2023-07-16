@@ -11,6 +11,7 @@ from .models import InfoPersonal
 # Create your views here.
 @login_required
 def perfilview(request):
+    avatar = getAvatar(request)
     usuario = request.user
     informacion_personal = InfoPersonal.objects.filter(user=usuario).first()
 
@@ -22,11 +23,12 @@ def perfilview(request):
     else:
         form = UserEditForm(instance=request.user)
 
-    return render(request, 'perfil/perfil.html', {'form': form, 'informacion_personal': informacion_personal})
+    return render(request, 'perfil/perfil.html', {'form': form, 'informacion_personal': informacion_personal, 'avatar': avatar})
 
 
 @login_required
 def editarPerfil(request):
+    avatar = getAvatar(request)
     usuario = request.user
     user_basic_info = User.objects.get(id=usuario.id)
 
@@ -55,7 +57,7 @@ def editarPerfil(request):
         form = UserEditForm(initial={'username': usuario.username, 'email': usuario.email, 'first_name': usuario.first_name, 'last_name': usuario.last_name})
         info_personal_form = InfoPersonalForm(instance=info_personal)
 
-    return render(request, 'perfil/editar.html', {'form': form, 'info_personal_form': info_personal_form})
+    return render(request, 'perfil/editar.html', {'form': form, 'info_personal_form': info_personal_form, 'avatar': avatar})
 
 
 

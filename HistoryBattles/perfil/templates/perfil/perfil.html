@@ -12,7 +12,7 @@
         <li>Segundo nombre: {{ user.last_name }}</li>
   
         {% if informacion_personal %}
-            <li><p>{{ informacion_personal.descripcion }}</p></li>
+            <li><p>Una breve descripcion: {{ informacion_personal.descripcion }}</p></li>
             <li><a href="{{ informacion_personal.enlace }}">{{ informacion_personal.enlace }}</a></li>
         {% else %}
             <p>No se encontró información personal.</p>
